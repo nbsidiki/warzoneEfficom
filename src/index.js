@@ -3,12 +3,12 @@
 function showImage() {
     const person = document.querySelector("#personnageSelector").value
     if (document.querySelector('#perso')) {
-        document.querySelector('#perso').src = `/images/${person}.jpeg`
+        document.querySelector('#perso').src = `./images/${person}.jpeg`
         localStorage.setItem('perso', person)
     }
     else {
         const image = document.createElement('img')
-        image.src = `/images/${person}.jpeg`
+        image.src = `./images/${person}.jpeg`
         image.width = 300
         image.id = "perso"
         image.style = 'border-radius:10%;'
@@ -26,10 +26,10 @@ function insertCarte() {
         const carteId =idTable.length > 0? parseInt(idTable[idTable.length -1]?.split('-')[1]) +1 :1;
         document.querySelector('.inSession').innerHTML += `
         <div class="carte" id="carte-${carteId}" onmouseover="getIdTable()">
-            <img src="/images/${person}.jpeg" width="180" onmouseover="getIdImage()" alt="" id="${person}">
+            <img src="./images/${person}.jpeg" width="180" onmouseover="getIdImage()" alt="" id="${person}">
             <div class='buttonsDiv' id='buttonsDiv-1' >
-                <img class="icon" src="/images/pen.png" alt="edit" onClick="editCarte()" ></img>
-                <img class="icon" src="/images/trash.png" alt="delete" id ="suppr-${carteId}" onClick="removeCarte()"></img>
+                <img class="icon" src="./images/pen.png" alt="edit" onClick="editCarte()" ></img>
+                <img class="icon" src="./images/trash.png" alt="delete" id ="suppr-${carteId}" onClick="removeCarte()"></img>
             </div>
         </div>`
         imageTable.push(`${person}`)
@@ -61,10 +61,10 @@ function showCarte() {
         const imageId = imageTable[i]
         document.querySelector('.inSession').innerHTML += `
         <div class="carte" id="${carteIdTable}" onmouseover="getIdTable()">
-            <img src="/images/${imageId}.jpeg" width="180" onmouseover="getIdImage()" alt="" id="${imageId}">
+            <img src="./images/${imageId}.jpeg" width="180" onmouseover="getIdImage()" alt="" id="${imageId}">
             <div class='buttonsDiv' id='buttonsDiv-1' >
-                <img class="icon" src="/images/pen.png" alt="edit" onClick="editCarte()" ></img>
-                <img class="icon" src="/images/trash.png" alt="delete" id ="suppr-${carteIdTable}" onClick="removeCarte()"></img>
+                <img class="icon" src="./images/pen.png" alt="edit" onClick="editCarte()" ></img>
+                <img class="icon" src="./images/trash.png" alt="delete" id ="suppr-${carteIdTable}" onClick="removeCarte()"></img>
             </div>
         </div>`
     }
@@ -111,11 +111,11 @@ function editCarte() {
         <option value="perso4">Perso4</option>
         <option value="perso5">Perso5</option>
     </select>
-    <img src="/images/save.png"  alt="" width="30" id = "save2">
+    <img src="./images/save.png"  alt="" width="30" id = "save2">
 `
     document.querySelector('#save2').addEventListener('click', () => {
         const person = document.querySelector('#personnageModifier').value
-        document.querySelector(`#${localStorage.getItem('imageId')}`).src = `/images/${person}.jpeg`
+        document.querySelector(`#${localStorage.getItem('imageId')}`).src = `./images/${person}.jpeg`
 
         document.querySelector('#personnageModifier').remove()
         document.querySelector('#save2').remove()
