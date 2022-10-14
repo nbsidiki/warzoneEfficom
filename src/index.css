@@ -1,0 +1,101 @@
+body{
+    background-image: url("/images/backgroundImage.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+}
+.start{
+    border: 0px;
+    font-weight: 600;
+    font-size: 150%;
+    color: azure;
+    background: none;
+}
+.start:hover{
+    background-color: rgb(194, 9, 9);
+    border-radius: 50%;
+}
+.header{
+  margin-top: 10px;
+  display: flex;
+
+}
+.container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.game{
+    position: relative;
+}
+.inGame{
+  display:none;
+  align-items: center;
+  flex-direction: column;
+ height: 50vh;
+  
+
+}
+#personnageSelector{
+    width: 300px;
+    background-color: red;
+}
+
+#personnageModifier{
+    background-color: rgb(132, 111, 111);
+    width: 100px;
+}
+.buttonsDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+.icon {
+cursor: pointer;
+width: 25px;
+margin-right: auto;
+margin-left: auto;
+}
+.carte{
+    border: 20px;
+    border-color: black;
+    background-color: black;
+    border-radius: 8%;
+    
+}
+img{
+    border-radius: 15%;
+}
+
+.array{
+    display: flex;
+    flex-direction: row;
+}
+.inSession{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: auto;
+    height: 28vh;
+}
+.carte{
+    margin-left: 10px;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+#click-photo{
+    display: none;
+    justify-content: center;
+}
+.video{
+    display: none;
+}
+#start-camera{
+    border: 0px;
+    justify-content: center;
+
+}
