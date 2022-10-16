@@ -31,6 +31,8 @@ body{
 }
 .game{
     position: relative;
+    display: flex;
+    align-items: center;
 }
 .inGame{
   display:none;
@@ -90,6 +92,8 @@ img{
 #click-photo{
     display: none;
     justify-content: center;
+    position: relative;
+    margin-left: 45%;
 }
 .video{
     display: none;
