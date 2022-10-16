@@ -46,11 +46,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.querySelector(".inGame").setAttribute("style", "display:flex")
             sessionStorage.setItem('playing', true)
             document.getElementById('start').remove()
+            showImage()
         })
     } else {
         document.querySelector(".inGame").setAttribute("style", "display:flex")
         document.getElementById('start').remove()
     };
+
     showCarte();
 
 });
@@ -61,7 +63,7 @@ function showCarte() {
         const imageId = imageTable[i]
         document.querySelector('.inSession').innerHTML += `
         <div class="carte" id="${carteIdTable}" onmouseover="getIdTable()">
-            <img src="images/${imageId}.jpeg" width="180" onmouseover="getIdImage()" alt="" id="${imageId}">
+            <img src="images/${imageId}.jpeg" width="180" onmouseover="getIdImage()"  alt="" id="${imageId}">
             <div class='buttonsDiv' id='buttonsDiv-1' >
                 <img class="icon" src="images/pen.png" alt="edit" onClick="editCarte()" ></img>
                 <img class="icon" src="images/trash.png" alt="delete" id ="suppr-${carteIdTable}" onClick="removeCarte()"></img>
@@ -82,7 +84,7 @@ function getIdTable() {
 
 function getIdImage() {
     for (let i = 0; i < imageTable.length; i++) {
-        const element = imageTable[i];
+        const element = idTable[i];
         document.querySelector(`#${element}`)?.addEventListener('mouseover', () => {
             localStorage.setItem('imageId', imageTable[i])
         })
@@ -102,24 +104,29 @@ function removeCarte() {
 
 }
 function editCarte() {
-    const id = localStorage.getItem('carteId')
-    document.querySelector(`#${id}`).innerHTML += ` 
-    <select onchange="showImage()" name="selectPersonnage" id="personnageModifier">
+    if (!(localStorage.getItem("stillEdit"))) {
+        
+        localStorage.setItem("stillEdit",true)
+        const id = localStorage.getItem('carteId')
+        document.querySelector(`#${id}`).innerHTML += ` 
+        <select name="selectPersonnage" id="personnageModifier">
         <option value="perso1">Perso1</option>
         <option value="perso2">Perso2</option>
         <option value="perso3">Perso3</option>
         <option value="perso4">Perso4</option>
         <option value="perso5">Perso5</option>
-    </select>
-    <img src="images/save.png"  alt="" width="30" id = "save2">
-`
-    document.querySelector('#save2').addEventListener('click', () => {
-        const person = document.querySelector('#personnageModifier').value
-        document.querySelector(`#${localStorage.getItem('imageId')}`).src = `images/${person}.jpeg`
-
-        document.querySelector('#personnageModifier').remove()
-        document.querySelector('#save2').remove()
-    })
+        </select>
+        <img src="images/save.png"  alt="" width="30" id = "save2">
+        `
+        document.querySelector('#save2').addEventListener('click', () => {
+            const person = document.querySelector('#personnageModifier').value
+            document.querySelector(`#${localStorage.getItem('imageId')}`).src = `images/${person}.jpeg`
+            
+            document.querySelector('#personnageModifier').remove()
+            document.querySelector('#save2').remove()
+            localStorage.removeItem("stillEdit")
+        })
+    }
 }
 
 let camera_button = document.querySelector("#start-camera");
