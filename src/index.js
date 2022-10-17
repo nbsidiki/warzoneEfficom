@@ -23,7 +23,7 @@ let imageTable = JSON.parse(localStorage.getItem("imageTable")) ?? []
 function insertCarte() {
     const person = localStorage.getItem('perso')
     if (person !== null) {
-        const carteId =idTable.length > 0? parseInt(idTable[idTable.length -1]?.split('-')[1]) +1 :1;
+        const carteId = idTable.length > 0 ? parseInt(idTable[idTable.length - 1]?.split('-')[1]) + 1 : 1;
         document.querySelector('.inSession').innerHTML += `
         <div class="carte" id="carte-${carteId}" onmouseover="getIdTable()">
             <img src="images/${person}.jpeg" width="180" onmouseover="getIdImage()" alt="" id="${person}">
@@ -32,8 +32,8 @@ function insertCarte() {
                 <img class="icon" src="images/trash.png" alt="delete" id ="suppr-${carteId}" onClick="removeCarte()"></img>
             </div>
         </div>`
-        imageTable.push(`${person}`)
-        idTable.push(`carte-${carteId}`)
+        imageTable = [...imageTable, `${person}`]
+        idTable = [...idTable, `carte-${carteId}`]
         localStorage.setItem("idTable", JSON.stringify(idTable))
         localStorage.setItem("imageTable", JSON.stringify(imageTable))
 
@@ -96,17 +96,17 @@ function removeCarte() {
     const id = localStorage.getItem('carteId')
     document.querySelector(`#${id}`).remove()
     const index = idTable.indexOf(id)
-    idTable.splice(index,1)
+    idTable.splice(index, 1)
     localStorage.setItem("idTable", JSON.stringify(idTable))
-    imageTable.splice(index,1)
+    imageTable.splice(index, 1)
     localStorage.setItem("imageTable", JSON.stringify(imageTable))
 
 
 }
 function editCarte() {
     if (!(localStorage.getItem("stillEdit"))) {
-        
-        localStorage.setItem("stillEdit",true)
+
+        localStorage.setItem("stillEdit", true)
         const id = localStorage.getItem('carteId')
         document.querySelector(`#${id}`).innerHTML += ` 
         <select name="selectPersonnage" id="personnageModifier">
@@ -121,7 +121,7 @@ function editCarte() {
         document.querySelector('#save2').addEventListener('click', () => {
             const person = document.querySelector('#personnageModifier').value
             document.querySelector(`#${localStorage.getItem('imageId')}`).src = `images/${person}.jpeg`
-            
+
             document.querySelector('#personnageModifier').remove()
             document.querySelector('#save2').remove()
             localStorage.removeItem("stillEdit")
@@ -134,26 +134,26 @@ let canvas = document.querySelector("#canvas");
 let click_button = document.querySelector("#click-photo");
 let video = document.querySelector("#video");
 
-camera_button.addEventListener('click', async function() {
+camera_button.addEventListener('click', async function () {
     camera_button.setAttribute("style", "display:none")
     click_button.setAttribute("style", "display:flex")
     document.querySelector('.video').setAttribute("style", "display:flex")
-   	let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-	video.srcObject = stream;
+    let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+    video.srcObject = stream;
 });
 
-click_button.addEventListener('click', function() {
-   	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-   	let image_data_url = canvas.toDataURL('image/jpeg');
+click_button.addEventListener('click', function () {
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    let image_data_url = canvas.toDataURL('image/jpeg');
 
-   	// data url of the image
-   	downloadURI(image_data_url,"image.png")
+    // mise en place du téléchargement automatique de l'image;
+    downloadURI(image_data_url, "image.png")
     document.querySelector('#video').remove()
     click_button.remove()
     setInterval(() => {
         document.querySelector('#canvas')?.remove()
         document.querySelector('.video')?.remove()
-    }, 4000);
+    }, 5000);
 });
 
 const downloadURI = (uri, name) => {
