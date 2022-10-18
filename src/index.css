@@ -74,7 +74,7 @@ img {
 }
 .inSession {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   overflow: auto;
   height: 28vh;
 }
@@ -83,6 +83,14 @@ img {
   margin-right: auto;
   margin-bottom: 5px;
 }
+
+.imageCarte{
+
+    size: cover;
+    width: 150px;
+    height: 100px;
+}
+
 #click-photo {
   display: none;
   justify-content: center;

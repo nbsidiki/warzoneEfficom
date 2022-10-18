@@ -27,7 +27,7 @@ function insertCarte() {
         const carteId = idTable.length > 0 ? parseInt(idTable[idTable.length - 1]?.split('-')[1]) + 1 : 1;
         document.querySelector('.inSession').innerHTML += `
         <div class="carte" id="carte-${carteId}" onmouseover="getIdTable()">
-            <img src="images/${person}.jpeg" width="180" onmouseover="getIdImage()" alt="" id="${person}">
+            <img src="images/${person}.jpeg" width="180" onmouseover="getIdImage()" alt="" id="${person}" class="imageCarte" >
             <div class='buttonsDiv' id='buttonsDiv-1' >
                 <img class="icon" src="images/pen.png" alt="edit" onClick="editCarte()" ></img>
                 <img class="icon" src="images/trash.png" alt="delete" id ="suppr-${carteId}" onClick="removeCarte()"></img>
@@ -64,7 +64,7 @@ function showCarte() {
         const imageId = imageTable[i]
         document.querySelector('.inSession').innerHTML += `
         <div class="carte" id="${carteIdTable}" onmouseover="getIdTable()">
-            <img src="images/${imageId}.jpeg" width="180" onmouseover="getIdImage()"  alt="" id="${imageId}">
+            <img src="images/${imageId}.jpeg" width="180" onmouseover="getIdImage()"  alt="" id="${imageId}" class="imageCarte">
             <div class='buttonsDiv' id='buttonsDiv-1' >
                 <img class="icon" src="images/pen.png" alt="edit" onClick="editCarte()" ></img>
                 <img class="icon" src="images/trash.png" alt="delete" id ="suppr-${carteIdTable}" onClick="removeCarte()"></img>
@@ -130,10 +130,10 @@ function editCarte() {
     }
 }
 
-let camera_button = document.querySelector("#start-camera");
-let canvas = document.querySelector("#canvas");
-let click_button = document.querySelector("#click-photo");
-let video = document.querySelector("#video");
+const camera_button = document.querySelector("#start-camera");
+const canvas = document.querySelector("#canvas");
+const click_button = document.querySelector("#click-photo");
+const video = document.querySelector("#video");
 
 camera_button.addEventListener('click', async function () {
     camera_button.setAttribute("style", "display:none")
@@ -145,7 +145,7 @@ camera_button.addEventListener('click', async function () {
 
 click_button.addEventListener('click', function () {
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-    let image_data_url = canvas.toDataURL('image/jpeg');
+    const image_data_url = canvas.toDataURL('image/jpeg');
 
     // mise en place du téléchargement automatique de l'image;
     downloadURI(image_data_url, "image.png")
@@ -158,7 +158,7 @@ click_button.addEventListener('click', function () {
 });
 
 const downloadURI = (uri, name) => {
-    let link = document.createElement("a");
+    const link = document.createElement("a");
     link.download = name;
     link.href = uri;
     document.body.appendChild(link);
