@@ -83,12 +83,22 @@ img {
   margin-right: auto;
   margin-bottom: 5px;
 }
+.carte:hover {
+  animation: slidein3 0.8s linear;
+}
 
-.imageCarte{
-
-    size: cover;
-    width: 150px;
-    height: 100px;
+.imageCarte {
+  size: cover;
+  width: 160px;
+  height: 120px;
+  border-radius: 10%;
+}
+.aperçu {
+  width: 300px;
+  border-radius: 10%;
+}
+.aperçu:hover {
+  animation: slidein2 0.8s linear;
 }
 
 #click-photo {
@@ -97,10 +107,51 @@ img {
   position: relative;
   margin-left: 45%;
 }
+
 .video {
   display: none;
 }
 #start-camera {
   border: 0px;
   justify-content: center;
+  width: 30;
+}
+#start-camera:hover {
+  animation: slidein 0.8s linear;
+}
+#click-photo:hover {
+  animation: slidein 0.8s linear;
+}
+.save:hover {
+  animation: slidein 0.8s linear;
+}
+.icon:hover {
+  animation: slidein 0.8s linear;
+}
+
+@keyframes slidein {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes slidein2 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.5);
+  }
+}
+
+@keyframes slidein3 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.8);
+  }
 }

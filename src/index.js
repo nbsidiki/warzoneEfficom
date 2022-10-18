@@ -12,9 +12,8 @@ function showImage() {
     else {
         const image = document.createElement('img')
         image.src = `images/${person}.jpeg`
-        image.width = 300
+        image.className = "aperçu"
         image.id = "perso"
-        image.style = 'border-radius:10%;'
         document.querySelector('.inGame').appendChild(image)
         localStorage.setItem('perso', person)
 
