@@ -1,5 +1,8 @@
 "use stcrict"
 
+let idTable = JSON.parse(localStorage.getItem("idTable")) ?? [];
+let imageTable = JSON.parse(localStorage.getItem("imageTable")) ?? []
+
 function showImage() {
     const person = document.querySelector("#personnageSelector").value
     if (document.querySelector('#perso')) {
@@ -18,8 +21,6 @@ function showImage() {
     }
 
 }
-let idTable = JSON.parse(localStorage.getItem("idTable")) ?? [];
-let imageTable = JSON.parse(localStorage.getItem("imageTable")) ?? []
 function insertCarte() {
     const person = localStorage.getItem('perso')
     if (person !== null) {
@@ -41,10 +42,10 @@ function insertCarte() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-    if (!sessionStorage.getItem('playing')) {
+    if (!localStorage.getItem('playing')) {
         document.querySelector('#start').addEventListener("click", () => {
             document.querySelector(".inGame").setAttribute("style", "display:flex")
-            sessionStorage.setItem('playing', true)
+            localStorage.setItem('playing', true)
             document.getElementById('start').remove()
             showImage()
         })
